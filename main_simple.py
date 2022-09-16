@@ -23,11 +23,12 @@ class Anomaly():
         estimate = np.median(np.log(self.data))
         scale = np.std(np.log(param * np.array(self.data)))
         lower_threshold = estimate -  scale 
-        upper_threshold = estimate +  scale 
+        upper_threshold = estimate +  scale
+
         return {
                 'lower_threshold': lower_threshold, 
                 'upper_threshold': upper_threshold
-                }
+            }
         
     def anomaly_decision(self):
         '''
@@ -35,7 +36,6 @@ class Anomaly():
             Returns:
                 a list with False (non-anomaly) or True (anomaly)
         '''
-        
         upper_decision = np.log(self.data) > self.baseline()['upper_threshold'] 
         lower_decision = np.log(self.data) < self.baseline()['lower_threshold']
         decision = [False if upper_decision[i] == False and lower_decision[i] == False else True for i in range(len(self.data))]
