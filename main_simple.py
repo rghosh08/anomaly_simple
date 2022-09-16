@@ -33,7 +33,7 @@ class Anomaly():
         '''
             Making decision whether a point is an anomaly
             Returns:
-                a numpy array with 0 (non-anomaly) or 1 (anomaly)
+                a list with False (non-anomaly) or True (anomaly)
         '''
         
         upper_decision = np.log(self.data) > self.baseline()['upper_threshold'] 
@@ -42,6 +42,5 @@ class Anomaly():
 
         return decision
 
-if __name__=="__main__":
-    print(Anomaly([4,6,8,4,3009,12]).anomaly_decision())
+
    
